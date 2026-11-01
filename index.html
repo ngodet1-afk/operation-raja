@@ -30,8 +30,9 @@
 /* icônes SVG */
 .svgico{width:100%;height:100%;display:block}
 .m .pic{min-height:0;height:auto;background:#fff1c9;padding:10px;box-shadow:none;border:3px solid #e1c48b;overflow:visible}
-.m .pic .svgico{width:100%;height:auto;max-height:150px}
-.dial .face{height:auto;padding:4px;font-size:0}.dial .face .svgico{width:100%;height:auto;max-height:110px}
+.m .pic{display:block;text-align:center}.m .pic .svgico{width:110px;height:110px;margin:0 auto}
+.dial .face{height:100px;width:100px;max-width:100%;padding:0;font-size:0;display:block;margin:0 auto}.dial .face .svgico{width:100px;height:100px;display:block}
+@media(max-width:600px){.dial .face,.dial .face .svgico{width:64px;height:64px}}
 :root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
 [hidden]{display:none!important}
 
@@ -221,7 +222,7 @@ h1{font-size:clamp(36px,7vw,62px);color:#ffe3a6} h2{font-size:clamp(26px,5vw,38p
   <!-- RÉGLAGES -->
   <section class="view" id="v-set" hidden>
     <div class="wrap">
-      <p class="eyebrow">Réservé au chef des rangers</p>
+      <p class="eyebrow">Réservé au chef des rangers · version v6 · 1 nov. 19:20</p>
       <div id="pinGate" class="card">
         <h2>Code parent</h2>
         <div class="field"><label for="pinIn">Entrez le code (par défaut 2468)</label><input id="pinIn" inputmode="numeric" type="password" autocomplete="off"></div>
@@ -268,7 +269,7 @@ Un cadeau d'anniversaire, ça se mérite ! Enfin… sauf si vous êtes plus mali
         <div class="card">
           <h2>Remise à zéro</h2>
           <p class="muted">Remet le chrono, les codes trouvés et le carnet à zéro, sans effacer vos réglages.</p>
-          <div style="display:flex;gap:8px;flex-wrap:wrap"><button class="btn small" id="resetBtn">Nouvelle partie</button><button class="btn small ghost" id="lockSet">Refermer les réglages</button></div>
+          <div style="display:flex;gap:8px;flex-wrap:wrap"><button class="btn small" id="resetBtn">Nouvelle partie</button><button class="btn small" id="resetYes" hidden style="background:#ff5c5c;color:#fff">OUI, tout remettre à zéro</button><button class="btn small ghost" id="lockSet">Refermer les réglages</button></div>
         </div>
       </div>
     </div>
@@ -316,6 +317,9 @@ function _toPrimitive(t, e) { if ("object" != typeof t || !t) return t; var r; i
     'singe': '<svg viewBox="0 0 100 100" class="svgico"><circle cx="28" cy="30" r="12" fill="#d7b899" stroke="#222" stroke-width="3"/><circle cx="72" cy="30" r="12" fill="#d7b899" stroke="#222" stroke-width="3"/><circle cx="50" cy="52" r="34" fill="#8d6e63" stroke="#222" stroke-width="3"/><circle cx="38" cy="46" r="4.5" fill="#222"/><circle cx="62" cy="46" r="4.5" fill="#222"/><ellipse cx="50" cy="60" rx="18" ry="13" fill="#d7b899" stroke="#222" stroke-width="3"/><path d="M42 62 q8 6 16 0" stroke="#222" stroke-width="3" fill="none"/></svg>',
     'radio': '<svg viewBox="0 0 100 100" class="svgico"><rect x="12" y="34" width="76" height="50" rx="8" fill="#5d4037" stroke="#222" stroke-width="3"/><circle cx="36" cy="59" r="14" fill="#ffe0b2" stroke="#222" stroke-width="3"/><circle cx="36" cy="59" r="5" fill="#222"/><rect x="58" y="48" width="22" height="6" rx="3" fill="#ffe0b2"/><rect x="58" y="60" width="22" height="6" rx="3" fill="#ffe0b2"/><path d="M28 34 l40 -22" stroke="#222" stroke-width="4" stroke-linecap="round"/><circle cx="68" cy="12" r="4" fill="#ff7a1a"/></svg>'
   };
+  function imgIcon(k, sz) {
+    return '<img width="' + sz + '" height="' + sz + '" style="display:block;margin:0 auto;width:' + sz + 'px;height:' + sz + 'px" alt="' + k + '" src="data:image/svg+xml;charset=utf-8,' + encodeURIComponent(ICONS[k].replace('class="svgico"', 'xmlns="http://www.w3.org/2000/svg"')) + '">';
+  }
   var ANIMALS = [{
     e: '🐯',
     n: 'tigre'
@@ -380,11 +384,12 @@ Un cadeau d'anniversaire, ça se mérite ! Enfin… sauf si vous êtes plus mali
   var DEF = {
     dur: 60,
     uv: '7319',
-    fin: '428',
+    fin: '520',
     pin: '2468',
     seq: [0, 1, 2, 3]
   };
   var S = load() || fresh();
+  if (S.cfg && S.cfg.fin === '428') S.cfg.fin = '520';
   function fresh() {
     return {
       cfg: _objectSpread(_objectSpread({}, DEF), {}, {
@@ -669,7 +674,7 @@ Un cadeau d'anniversaire, ça se mérite ! Enfin… sauf si vous êtes plus mali
       var a = ANIMALS[v];
       var d = document.createElement('div');
       d.className = 'dial';
-      var image = '<div class="face">' + ICONS[a.n] + '</div>';
+      var image = '<div class="face">' + imgIcon(a.n, window.innerWidth < 600 ? 64 : 100) + '</div>';
       d.innerHTML = '<button data-i="' + i + '" data-d="-1" aria-label="Animal précédent">▲</button>' + image + '<div class="nm">' + a.n + '</div><button data-i="' + i + '" data-d="1" aria-label="Animal suivant">▼</button>';
       D.appendChild(d);
     });
@@ -721,7 +726,7 @@ Un cadeau d'anniversaire, ça se mérite ! Enfin… sauf si vous êtes plus mali
       d.className = 'm' + (S.done[i] ? ' done' : '');
       var photo = document.createElement('div');
       photo.className = 'pic';
-      photo.innerHTML = ICONS[m.ic];
+      photo.innerHTML = imgIcon(m.ic, 110);
       var tag = document.createElement('span');
       tag.textContent = 'MISSION ' + (i + 1);
       photo.appendChild(tag);
@@ -941,18 +946,17 @@ Durée : ${S.cfg.dur} min   |   Temps ajouté : ${Math.round(S.extra / 60)} min`
   });
   var resetArmed = false;
   $('resetBtn').addEventListener('click', function () {
-    if (!resetArmed) {
-      resetArmed = true;
-      $('resetBtn').textContent = 'Confirmer la remise à zéro ?';
-      setTimeout(function () {
-        resetArmed = false;
-        $('resetBtn').textContent = 'Nouvelle partie';
-      }, 4000);
-      return;
-    }
+    $('resetYes').hidden = false;
+    $('resetBtn').textContent = 'Confirmer ci-contre →';
+  });
+  $('resetYes').addEventListener('click', function () {
+    $('resetYes').hidden = true;
     var cfg = S.cfg;
     S = fresh();
     S.cfg = cfg;
+    try {
+      localStorage.removeItem('raja');
+    } catch (e) {}
     save();
     buf = '';
     showBuf();
