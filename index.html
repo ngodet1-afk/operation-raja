@@ -164,7 +164,7 @@ h1{font-size:clamp(36px,7vw,62px);color:#ffe3a6} h2{font-size:clamp(26px,5vw,38p
   <section class="view" id="v-home">
     <div class="wrap">
       <div class="logo">🐯</div>
-      <p class="eyebrow" style="text-align:center">Mission spéciale · les 10 ans d'Albane · version v10 · 1 nov. 20:25</p>
+      <p class="eyebrow" style="text-align:center">Mission spéciale · les 10 ans d'Albane · version v11 · 1 nov. 21:00</p>
       <h1 style="text-align:center">OPÉRATION RAJA</h1>
       <p style="text-align:center" class="muted">Albane, un braconnier a enlevé Raja, ton tigre. Toi et tes rangers avez 60 minutes pour le libérer avant que son camion ne parte.</p>
       <div style="display:flex;justify-content:center"><button class="btn" id="startBtn">▶ Démarrer la mission</button></div>
@@ -195,7 +195,7 @@ h1{font-size:clamp(36px,7vw,62px);color:#ffe3a6} h2{font-size:clamp(26px,5vw,38p
   <!-- VERROU -->
   <section class="view" id="v-lock" hidden>
     <div class="wrap">
-      <p class="eyebrow">Cage de Raja · le tigre d'Albane · version v10 · 1 nov. 20:25</p>
+      <p class="eyebrow">Cage de Raja · le tigre d'Albane · version v11 · 1 nov. 21:00</p>
       <h2>Mettez les 4 animaux dans le bon ordre</h2>
       <p class="muted">Appuyez sur ▲ ou ▼ pour changer l'animal de chaque roue, puis testez le verrou. L'ordre est caché dans l'énigme de la chouette.</p>
       <div class="dials" id="dials"></div>
@@ -222,7 +222,7 @@ h1{font-size:clamp(36px,7vw,62px);color:#ffe3a6} h2{font-size:clamp(26px,5vw,38p
   <!-- RÉGLAGES -->
   <section class="view" id="v-set" hidden>
     <div class="wrap">
-      <p class="eyebrow">Réservé au chef des rangers · version v10 · 1 nov. 20:25</p>
+      <p class="eyebrow">Réservé au chef des rangers · version v11 · 1 nov. 21:00</p>
       <div id="pinGate" class="card">
         <h2>Code parent</h2>
         <div class="field"><label for="pinIn">Entrez le code (par défaut 2468)</label><input id="pinIn" inputmode="numeric" type="password" autocomplete="off"></div>
@@ -359,8 +359,8 @@ function _toPrimitive(t, e) { if ("object" != typeof t || !t) return t; var r; i
     e: '🐘',
     ic: 'éléphant',
     t: 'La carte déchirée',
-    d: 'Trouvez les 12 morceaux cachés dans la pièce et reconstituez la carte. Les 4 animaux entourés en rouge donnent le code à 4 chiffres de la boîte bleue.',
-    h: ['Regardez sous les coussins, derrière les cadres et dans les tiroirs : les morceaux sont partout.', 'Sur la carte, chaque animal a un numéro. Lisez les 4 animaux entourés de gauche à droite.']
+    d: 'Trouvez les 12 morceaux cachés dans la pièce et reconstituez la carte (le fleuve, le sentier et le cadre doivent se raccorder). Les 4 animaux entourés en rouge donnent le code de la boîte bleue.',
+    h: ['Regardez sous les coussins, derrière les cadres et dans les tiroirs : les morceaux sont partout.', 'L\'ordre des 4 chiffres ? Fais comme l\'eau du fleuve : pars de la SOURCE dans la montagne et descends jusqu\'à la MER.']
   }, {
     e: '🦜',
     ic: 'perroquet',
