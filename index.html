@@ -38,6 +38,24 @@
 .dial .face{height:100px;width:100px;max-width:100%;padding:0;font-size:0;display:block;margin:0 auto}.dial .face .svgico{width:100px;height:100px;display:block}
 @media(max-width:600px){.dial .face,.dial .face .svgico{width:64px;height:64px}}
 
+/* carnet de Louis */
+.bdots{display:-webkit-flex;display:flex;justify-content:center;-webkit-flex-wrap:wrap;flex-wrap:wrap}
+.bdots span{width:64px;height:64px;border-radius:50%;border:3px solid #98794f;margin:5px;background:#0e2a1b;display:-webkit-flex;display:flex;align-items:center;justify-content:center;opacity:.55}
+.bdots span img{width:46px!important;height:46px!important}
+.bdots span.done{border-color:#6fe39a;background:#123d27;opacity:1}
+.bdots span.cur{border-color:#ff7a1a;background:#3a2410;opacity:1;width:78px;height:78px}
+.bcard{background:#fff8e8;color:#2b1d0e;border-radius:22px;padding:18px;box-shadow:0 8px 0 rgba(0,0,0,.25)}
+.bcard .bnum{text-align:center;font-family:'Rubik',sans-serif;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:#b24a0b;font-size:16px}
+.bcard h3{text-align:center;font-family:'Rubik Mono One','Rubik',sans-serif;font-size:28px;font-size:clamp(22px,4.5vw,36px);margin:4px 0 10px;color:#0f3d2a;line-height:1.15}
+.bcard .bdesc{font-size:19px;line-height:1.5;margin:0 0 12px}
+.bcard .bhint{background:#ffe9b8;border-left:6px solid #ff7a1a;border-radius:10px;padding:10px 12px;margin:8px 0;font-size:18px;line-height:1.45;display:-webkit-flex;display:flex;align-items:center}
+.bcard .bhint span{-webkit-flex:1;flex:1;margin-right:8px}
+.bbig{display:block;width:100%;border:0;border-radius:18px;padding:18px 10px;font-size:26px;font-weight:900;margin:10px 0;color:#fff;box-shadow:0 6px 0 rgba(0,0,0,.25)}
+.bbig:active{transform:translateY(4px);box-shadow:0 2px 0 rgba(0,0,0,.25)}
+.bok{background:#2e9e5b}.bhintbtn{background:#ff9a1a;color:#2b1d0e}
+.bsmall{background:transparent;border:2px solid #b08a5c;color:#7a5a2b;border-radius:12px;padding:10px 14px;font-size:17px;font-weight:700;margin:4px}
+.bspeak{background:#0f3d2a;color:#fff3d9;border:0;border-radius:12px;padding:10px 14px;font-size:20px;font-weight:800;-webkit-flex:none;flex:none}
+
 /* jardin */
 .gturn{text-align:center;font-family:'Rubik',sans-serif;font-size:18px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:#efc675}
 .gname{text-align:center;font-family:'Rubik Mono One','Rubik',sans-serif;font-size:44px;font-size:clamp(34px,7vw,64px);color:#fff3d9;line-height:1.1;margin:4px 0 8px}
@@ -184,7 +202,7 @@ h1{font-size:clamp(36px,7vw,62px);color:#ffe3a6} h2{font-size:clamp(26px,5vw,38p
   <section class="view" id="v-home">
     <div class="wrap">
       <div class="logo">🐯</div>
-      <p class="eyebrow" style="text-align:center">Mission spéciale · les 10 ans d'Albane · version v20 · 6 nov.</p>
+      <p class="eyebrow" style="text-align:center">Mission spéciale · les 10 ans d'Albane · version v23 · 7 nov.</p>
       <h1 style="text-align:center">OPÉRATION RAJA</h1>
       <p style="text-align:center" class="muted">Albane, un braconnier a enlevé Raja, ton tigre. Toi et tes rangers avez 60 minutes pour le libérer avant que son camion ne parte.</p>
       <div style="display:flex;justify-content:center"><button class="btn" id="startBtn">▶ Démarrer la mission</button></div>
@@ -260,7 +278,7 @@ h1{font-size:clamp(36px,7vw,62px);color:#ffe3a6} h2{font-size:clamp(26px,5vw,38p
   <!-- VERROU -->
   <section class="view" id="v-lock" hidden>
     <div class="wrap">
-      <p class="eyebrow">Cage de Raja · le tigre d'Albane · version v20 · 6 nov.</p>
+      <p class="eyebrow">Cage de Raja · le tigre d'Albane · version v23 · 7 nov.</p>
       <h2>Verrou ouvert ! Dernière étape : mettez les 4 animaux dans le bon ordre</h2>
       <p class="muted">Appuyez sur ▲ ou ▼ pour changer l'animal de chaque roue, puis testez le verrou. L'ordre est caché dans l'énigme de la chouette.</p>
       <div class="dials" id="dials"></div>
@@ -276,19 +294,18 @@ h1{font-size:clamp(36px,7vw,62px);color:#ffe3a6} h2{font-size:clamp(26px,5vw,38p
   <!-- CARNET -->
   <section class="view" id="v-book" hidden>
     <div class="wrap">
-      <p class="eyebrow">Carnet de mission · opération pour les 10 ans d'Albane</p>
-      <h2 id="bookTitle">Les 6 missions</h2>
-      <div style="display:flex;justify-content:center"><button class="btn small ghost" id="bookToTerm">💻 Retour à l'ordinateur</button></div>
-      <div class="prog"><i id="progBar"></i></div>
-      <p class="muted" id="progTxt">0 mission sur 6</p>
-      <div class="missions" id="missions"></div>
+      <p class="eyebrow">Carnet de Louis · Ranger junior</p>
+      <div class="bdots" id="bDots"></div>
+      <div id="bCard" class="bcard"></div>
+      <div hidden><div id="missions"></div><i id="progBar"></i><span id="progTxt"></span><span id="bookTitle"></span></div>
+      <div style="display:flex;justify-content:center"><button class="btn small ghost" id="bookToTerm">💻 Aller à l'ordinateur</button></div>
     </div>
   </section>
 
   <!-- RÉGLAGES -->
   <section class="view" id="v-set" hidden>
     <div class="wrap">
-      <p class="eyebrow">Réservé au chef des rangers · version v20 · 6 nov.</p>
+      <p class="eyebrow">Réservé au chef des rangers · version v23 · 7 nov.</p>
       <div id="pinGate" class="card">
         <h2>Code parent</h2>
         <div class="field"><label for="pinIn">Entrez le code (par défaut 2468)</label><input id="pinIn" inputmode="numeric" type="password" autocomplete="off"></div>
@@ -439,15 +456,15 @@ function _toPrimitive(t, e) { if ("object" != typeof t || !t) return t; var r; i
   }, {
     e: '🐍',
     ic: 'serpent',
-    t: 'Le serpent et les menteurs',
-    d: 'Dans la boîte bleue : un miroir, un message écrit à l\'envers et trois animaux qui parlent. Lisez le message avec le miroir, puis trouvez l\'animal qui dit la vérité : il sait où est caché le dictionnaire du perroquet.',
-    h: ['Tenez le miroir à côté de la feuille, pas devant. Un seul animal dit vrai, les deux autres mentent.', 'Essayez : « et si le singe disait vrai ? » Alors la chouette dirait vrai aussi… impossible ! C\'est donc le perroquet qui dit vrai.']
+    t: 'Le serpent et les clés',
+    d: 'Dans la boîte bleue : un miroir et un message écrit à l\'envers. C\'est une devinette ! Elle vous envoie à une cachette du jardin, où vous trouverez une clé et la devinette suivante. 4 clés à trouver, puis la cachette du coffre du braconnier. Une seule clé ouvre le coffre !',
+    h: ['Lisez chaque devinette tous ensemble, à voix haute. Chaque cachette garde une clé ET la devinette suivante. Pour le coffre, lisez bien son étiquette.', 'Les cachettes, dans l\'ordre : la cabane en bois, le grand olivier, le muret près des marches, l\'abri de la piscine, puis la petite maison peinte pour le coffre. La bonne clé : la girafe.']
   }, {
     e: '🦜',
     ic: 'perroquet',
     t: 'Le perroquet bavard',
-    d: 'Avec le dictionnaire, traduisez le message du perroquet : chaque ranger décode un symbole. Le mot trouvé ouvre la boîte verte (cadenas à lettres).',
-    h: ['Chaque symbole = une lettre. Répartissez-vous les symboles, un par ranger.', 'Écrivez les lettres dans l\'ordre : ça fait un mot de 6 lettres qui parle de la forêt des tigres.']
+    d: 'Dans le coffre : le perroquet du braconnier récite trois animaux, toujours dans le même ordre. Le code de la boîte verte (3 chiffres) « marche sur leurs pattes » !',
+    h: ['Comptez les pattes de chaque animal, dans l\'ordre où le perroquet les dit. Un chiffre par animal.', 'Araignée = 8 pattes, perroquet = 2 pattes, tigre = 4 pattes.']
   }, {
     e: '🦉',
     ic: 'chouette',
@@ -568,8 +585,8 @@ Tic, tac. Tic, tac…
       var s = 0;
       if (/premium/.test(n)) s += 40;
       if (/enhanced|amélior|améliorée/.test(n)) s += 30;
-      if (/daniel/.test(n)) s += 80;
-      if (/thomas|audrey|aurélie|marie|chantal|amélie|nicolas/.test(n)) s += 10;
+      if (/thomas/.test(n)) s += 80;
+      if (/daniel|audrey|aurélie|marie|chantal|amélie|nicolas/.test(n)) s += 10;
       if ((v.lang || '').toLowerCase() === 'fr-fr') s += 5;
       if (v.localService) s += 2;
       if (/compact|eloquence/.test(n)) s -= 20;
@@ -579,7 +596,7 @@ Tic, tac. Tic, tac…
       return score(b) - score(a);
     })[0];
   }
-  function speak(txt) {
+  function speak(txt, narr) {
     try {
       if (!('speechSynthesis' in window)) return;
       speechSynthesis.cancel();
@@ -589,8 +606,8 @@ Tic, tac. Tic, tac…
       }).filter(Boolean).forEach(function (s) {
         var u = new SpeechSynthesisUtterance(s);
         u.lang = 'fr-FR';
-        u.rate = 0.92;
-        u.pitch = 0.8;
+        u.rate = narr ? 0.95 : 0.92;
+        u.pitch = narr ? 1 : 0.8;
         if (v) u.voice = v;
         speechSynthesis.speak(u);
       });
@@ -927,7 +944,7 @@ Tic, tac. Tic, tac…
     $('finalCode').textContent = S.lockOk ? S.cfg.fin.split('').join(' ') : '? ? ?';
     $('cageMsg').textContent = S.lockOk ? 'Verrou ouvert ! Réglez le cadenas de la cage sur cette combinaison et libérez Raja. Bon anniversaire Albane !' : 'Verrou fermé. Raja attend…';
   }
-  function renderBook() {
+  function renderBookOld() {
     var M = $('missions');
     M.innerHTML = '';
     var n = S.done.filter(Boolean).length;
@@ -1270,6 +1287,7 @@ Durée : ${S.cfg.dur} min   |   Temps ajouté : ${Math.round(S.extra / 60)} min`
     beep(true);
     if (S.gturn > 11) {
       S.done[1] = true;
+      if ((S.cur || 1) < 2) S.cur = 2;
       renderBook();
       toast('🗺️ Les 12 morceaux sont trouvés !');
     }
@@ -1289,6 +1307,7 @@ Durée : ${S.cfg.dur} min   |   Temps ajouté : ${Math.round(S.extra / 60)} min`
   $('gRestart').addEventListener('click', function () {
     S.gturn = 0;
     S.done[1] = false;
+    if (S.cur === 2) S.cur = 1;
     save();
     renderBook();
     renderGarden();
@@ -1403,6 +1422,82 @@ Durée : ${S.cfg.dur} min   |   Temps ajouté : ${Math.round(S.extra / 60)} min`
     renderGardenSet();
     renderGarden();
     toast('Cap enregistré : ' + DIRS[S.cfg.g.route[+b.dataset.gcap][0]]);
+  });
+  if (!S.cfg.voiceV2) {
+    delete S.cfg.voice;
+    S.cfg.voiceV2 = 1;
+    save();
+  }
+  function bCur() {
+    var c = S.cur || 1;
+    if (S.done[5]) c = 6;else if (S.done[4] && c < 5) c = 5;else if (S.done[1] && c < 2) c = 2;
+    if (c < 1) c = 1;
+    S.cur = c;
+    return c;
+  }
+  function renderBook() {
+    var c = bCur();
+    var D = $('bDots');
+    D.innerHTML = '';
+    for (var i = 1; i <= 5; i++) {
+      var sp = document.createElement('span');
+      sp.className = i < c ? 'done' : i === c ? 'cur' : '';
+      sp.innerHTML = imgIcon(MISSIONS[i].ic, 46);
+      D.appendChild(sp);
+    }
+    var C = $('bCard');
+    if (c > 5) {
+      C.innerHTML = '<div class="bnum">Mission accomplie</div><h3>🐯 Raja est libre !</h3><p class="bdesc" style="text-align:center">Bravo les rangers ! Le Professeur Grizzli a perdu. Joyeux anniversaire Albane !</p>' + '<button class="bbig bok" data-b="speakend">🔊 Écouter</button><div style="text-align:center"><button class="bsmall" data-b="back">↩ Revenir à la mission d\'avant</button></div>';
+      return;
+    }
+    var m = MISSIONS[c],
+      used = S.hints && S.hints[c] || 0,
+      h = '';
+    for (var k = 0; k < used; k++) {
+      h += '<div class="bhint"><span><b>Indice ' + (k + 1) + ' :</b> ' + m.h[k] + '</span><button class="bspeak" data-b="say" data-k="' + k + '">🔊</button></div>';
+    }
+    C.innerHTML = '<div style="text-align:center">' + imgIcon(m.ic, 120) + '</div><div class="bnum">Mission ' + (c + 1) + ' sur 6</div><h3>' + m.t + '</h3>' + '<p class="bdesc">' + m.d + '</p><button class="bbig" style="background:#0f3d2a" data-b="speakm">🔊 Écouter la mission</button>' + h + (used < m.h.length ? '<button class="bbig bhintbtn" data-b="hint">💡 Un indice !</button>' : '') + '<button class="bbig bok" data-b="ok">✅ On a réussi !</button>' + (c > 1 ? '<div style="text-align:center"><button class="bsmall" data-b="back">↩ Revenir à la mission d\'avant</button></div>' : '');
+  }
+  $('bCard').addEventListener('click', function (e) {
+    var b = e.target.closest('button');
+    if (!b) return;
+    var c = bCur(),
+      m = MISSIONS[c],
+      a = b.dataset.b;
+    if (a === 'speakm') {
+      speak(m.t + '. ' + m.d, true);
+    } else if (a === 'say') {
+      speak('Indice ' + (+b.dataset.k + 1) + '. ' + m.h[+b.dataset.k], true);
+    } else if (a === 'hint') {
+      S.hints = S.hints || {};
+      S.hints[c] = (S.hints[c] || 0) + 1;
+      save();
+      renderBook();
+      speak('Indice ' + S.hints[c] + '. ' + m.h[S.hints[c] - 1], true);
+    } else if (a === 'ok') {
+      S.done[c] = true;
+      S.cur = c + 1;
+      beep(true);
+      save();
+      renderBook();
+      if (S.cur <= 5) {
+        speak('Bravo ! Mission suivante : ' + MISSIONS[S.cur].t, true);
+      } else {
+        speak('Bravo les rangers ! Raja est libre !', true);
+      }
+    } else if (a === 'back') {
+      var p = c - 1;
+      if (p < 1) return;
+      S.cur = p;
+      S.done[p] = false;
+      if (c > 5) S.done[5] = false;
+      save();
+      renderBook();
+    } else if (a === 'speakend') {
+      speak('Bravo les rangers ! Le Professeur Grizzli a perdu. Joyeux anniversaire Albane !', true);
+    }
+    var sc = $('v-book');
+    if (sc) sc.scrollTop = 0;
   });
   function renderAll() {
     renderGarden();
